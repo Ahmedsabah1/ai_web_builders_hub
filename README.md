@@ -146,6 +146,32 @@ flutter test
 flutter format .
 ```
 
+## 🤖 Automated APK Building
+
+This repository includes GitHub Actions automation for building Android APKs:
+
+### 📦 Automatic APK Generation
+- **Trigger**: Automatic on push to `main` or `master` branch
+- **Platform**: Android APK (release build)
+- **Download**: Available as GitHub Actions artifacts for 30 days
+- **Workflow**: `.github/workflows/build-apk.yml`
+
+### 🚀 How to Get the APK
+1. Go to repository **Actions** tab
+2. Select the latest successful build
+3. Download the `ai-web-builders-hub-apk` artifact
+4. Extract and install the APK on your Android device
+
+### 🛠️ Workflow Features
+- Flutter SDK 3.24.0 setup
+- Android SDK configuration
+- Automated dependency installation
+- Code analysis and testing
+- Release APK building
+- Artifact upload for easy download
+
+For detailed information, see [`docs/github-actions-apk.md`](docs/github-actions-apk.md).
+
 ## Features Implementation Status
 
 - ✅ Project setup and architecture
