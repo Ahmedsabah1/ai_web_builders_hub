@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/providers/providers.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/utils/app_utils.dart';
 import 'register_screen.dart';
 
 class LoginScreen extends ConsumerStatefulWidget {
@@ -42,7 +43,7 @@ class _LoginScreenState extends ConsumerState<LoginScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Sign in failed: ${e.toString()}'),
+            content: Text(AppUtils.formatErrorMessage(e)),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );

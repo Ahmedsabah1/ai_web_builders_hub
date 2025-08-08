@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../../data/providers/providers.dart';
 import '../../../core/constants/app_constants.dart';
+import '../../../core/utils/app_utils.dart';
 
 class RegisterScreen extends ConsumerStatefulWidget {
   const RegisterScreen({super.key});
@@ -54,7 +55,7 @@ class _RegisterScreenState extends ConsumerState<RegisterScreen> {
       if (mounted) {
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Sign up failed: ${e.toString()}'),
+            content: Text(AppUtils.formatErrorMessage(e)),
             backgroundColor: Theme.of(context).colorScheme.error,
           ),
         );
