@@ -271,7 +271,7 @@ class _WebViewScreenState extends State<WebViewScreen> {
                 useShouldOverrideUrlLoading: true,
                 mediaPlaybackRequiresUserGesture: false,
                 allowsInlineMediaPlayback: true,
-                iframeAllow: "camera; microphone",
+                iframeAllow: 'camera; microphone',
                 iframeAllowFullscreen: true,
               ),
               onWebViewCreated: (controller) {

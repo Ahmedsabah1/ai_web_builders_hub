@@ -119,6 +119,8 @@ class FavoritesScreen extends ConsumerWidget {
                         },
                         onFavoriteToggle: currentUser != null
                             ? () async {
+                                final scaffoldMessenger = ScaffoldMessenger.of(context);
+                                final errorColor = Theme.of(context).colorScheme.error;
                                 try {
                                   final toolRepository = ref.read(toolRepositoryProvider);
                                   await toolRepository.removeFromFavorites(
@@ -127,7 +129,7 @@ class FavoritesScreen extends ConsumerWidget {
                                   );
                                   
                                   // Show confirmation
-                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  scaffoldMessenger.showSnackBar(
                                     SnackBar(
                                       content: Text('${tool.name} removed from favorites'),
                                       action: SnackBarAction(
@@ -141,10 +143,10 @@ class FavoritesScreen extends ConsumerWidget {
                                             ref.invalidate(favoriteToolsProvider);
                                             ref.invalidate(toolsProvider);
                                           } catch (e) {
-                                            ScaffoldMessenger.of(context).showSnackBar(
+                                            scaffoldMessenger.showSnackBar(
                                               SnackBar(
                                                 content: Text('Error: ${e.toString()}'),
-                                                backgroundColor: Theme.of(context).colorScheme.error,
+                                                backgroundColor: errorColor,
                                               ),
                                             );
                                           }
@@ -157,10 +159,10 @@ class FavoritesScreen extends ConsumerWidget {
                                   ref.invalidate(favoriteToolsProvider);
                                   ref.invalidate(toolsProvider);
                                 } catch (e) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  scaffoldMessenger.showSnackBar(
                                     SnackBar(
                                       content: Text('Error: ${e.toString()}'),
-                                      backgroundColor: Theme.of(context).colorScheme.error,
+                                      backgroundColor: errorColor,
                                     ),
                                   );
                                 }

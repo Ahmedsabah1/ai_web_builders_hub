@@ -12,7 +12,7 @@ class AppUtils {
   static String formatErrorMessage(dynamic error) {
     if (error == null) return 'An unknown error occurred';
     
-    String errorMessage = error.toString();
+    final String errorMessage = error.toString();
     
     // Handle common Supabase errors
     if (errorMessage.contains('Invalid login credentials')) {
