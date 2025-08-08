@@ -170,6 +170,8 @@ class CategoryToolsScreen extends ConsumerWidget {
                         },
                         onFavoriteToggle: currentUser != null
                             ? () async {
+                                final scaffoldMessenger = ScaffoldMessenger.of(context);
+                                final errorColor = Theme.of(context).colorScheme.error;
                                 try {
                                   final toolRepository = ref.read(toolRepositoryProvider);
                                   if (tool.isFavorite) {
@@ -188,10 +190,10 @@ class CategoryToolsScreen extends ConsumerWidget {
                                   ref.invalidate(favoriteToolsProvider);
                                   ref.invalidate(toolsProvider);
                                 } catch (e) {
-                                  ScaffoldMessenger.of(context).showSnackBar(
+                                  scaffoldMessenger.showSnackBar(
                                     SnackBar(
                                       content: Text('Error: ${e.toString()}'),
-                                      backgroundColor: Theme.of(context).colorScheme.error,
+                                      backgroundColor: errorColor,
                                     ),
                                   );
                                 }

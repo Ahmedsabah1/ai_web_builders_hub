@@ -29,7 +29,6 @@ class AppTheme {
       secondary: secondaryColor,
       error: errorColor,
       surface: surfaceColor,
-      background: backgroundColor,
     ),
     
     // App Bar Theme
@@ -123,7 +122,6 @@ class AppTheme {
       secondary: darkSecondaryColor,
       error: darkErrorColor,
       surface: darkSurfaceColor,
-      background: darkBackgroundColor,
     ),
     
     // App Bar Theme
