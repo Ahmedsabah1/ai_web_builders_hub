@@ -45,5 +45,9 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 
+# Android local properties
+android/local.properties
+android/key.properties
+
 # macOS
 **/macos/Flutter/GeneratedPluginRegistrant.swift

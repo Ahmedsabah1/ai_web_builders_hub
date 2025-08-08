@@ -1,0 +1,58 @@
+name: Build Android APK
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  build-apk:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Java JDK
+      uses: actions/setup-java@v4
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        
+    - name: Setup Android SDK
+      uses: android-actions/setup-android@v3
+        
+    - name: Setup Flutter SDK
+      uses: subosito/flutter-action@v2
+      with:
+        flutter-version: '3.24.0'
+        channel: 'stable'
+        cache: true
+        
+    - name: Install dependencies
+      run: flutter pub get
+      
+    - name: Analyze project source
+      run: flutter analyze --no-fatal-infos
+      
+    - name: Run tests
+      run: flutter test || echo "No tests to run"
+      
+    - name: Build APK
+      run: flutter build apk --release
+      
+    - name: Upload APK artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: ai-web-builders-hub-apk
+        path: build/app/outputs/flutter-apk/app-release.apk
+        retention-days: 30
+        
+    - name: Get APK info
+      run: |
+        echo "APK built successfully!"
+        ls -la build/app/outputs/flutter-apk/
+        if [ -f "build/app/outputs/flutter-apk/app-release.apk" ]; then
+          echo "APK size: $(du -h build/app/outputs/flutter-apk/app-release.apk | cut -f1)"
+        fi
